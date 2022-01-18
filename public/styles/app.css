@@ -1,0 +1,145 @@
+.header {
+	padding: 5px;
+	background-color: #eee;
+}
+
+.article {
+	padding: 10px;
+}
+
+.api {
+	padding: 5px;
+	background-color: #ffe;
+}
+
+.footer {
+	padding: 5px;
+	background-color: #eee;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.bottomlink {
+	padding: 3px;
+	background-color: #ddd;
+	margin-right: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-family: monospace;
+}
+
+.bottomlink a {
+	margin-left: 10px;	
+	margin-right: 10px;	
+}
+
+.puzzle .index {
+	font-family: monospace;
+	font-style: italic;
+	color: #00a;
+	text-align: center;
+}
+
+.puzzle .rank {
+	font-family: monospace;
+	font-size: 20px;
+	text-align: center;
+	font-weight: bold;
+	color: #00f;
+	background-color: #ffa;
+	text-align: center;
+}
+
+.puzzle .username {
+	padding-left: 10px;
+	padding-right: 10px;
+	font-family: monospace;
+	font-weight: bold;
+	background-color: #ffa;
+	font-size: 20px;
+	color: #00f;
+}
+
+.puzzle .num {
+	font-family:monospace;
+	font-size: 20px;
+	padding: 8px;
+	font-weight: bold;
+	color: #070;
+	text-align:center;
+}
+
+.andmore {
+	color: #700;
+	font-style: italic;
+}
+
+.puzzles {
+	font-family: monospace;
+	font-size: 20px;
+	font-weight: bold;
+	color: #00f;
+	text-align: center;
+	background-color: #eee;
+}
+
+.aremygames {
+	color: #070;
+	font-weight: bold;
+}
+
+.updated {
+	color: #007;
+	font-weight: bold;
+}
+
+.foundusername {
+	color: #070;
+	font-weight: bold;
+}
+
+.notfoundusername {
+	color: #700;
+	font-weight: bold;
+}
+
+.foundrank {
+	color: #007;
+	font-weight: bold;
+}
+
+.foundnum {
+	color: #707;
+	font-weight: bold;
+}
+
+.showpuzzle {
+	font-family: monospace;
+	font-size: 16px;	
+	padding: 15px;
+	border-style: solid;
+	border-color: #aaa;
+	min-width: 120px;
+	text-align: center;
+}
+
+.gamedata {
+	font-family: monospace;
+	font-size: 16px;
+	min-width: 350px;
+}
+
+.gamemoves {
+	font-family: monospace;
+	font-size: 11px;
+}
+
+.puzzlehead {
+	background-color: #eee;
+}
+
+.puzzlesdiv {
+	font-family: monospace;
+	max-height: 50px;
+	overflow:scroll;
+}

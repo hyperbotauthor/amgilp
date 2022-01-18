@@ -1,0 +1,10 @@
+.env
+players_games/
+test.py
+raw_response.txt
+venv/
+
+node_modules
+
+__pycache__/
+

@@ -1,0 +1,35 @@
+let WAIT_CYC=300
+let CYC=1
+while :
+do
+    STR=$'\nCopying puzzle games'
+    echo "$STR"
+    ls -l puzzle_games.txt
+    wc -l puzzle_games.txt
+    cp amgilp/puzzle_games.txt .
+    ls -l puzzle_games.txt
+    wc -l puzzle_games.txt    
+    STR=$'\nCopying leaderboard'
+    echo "$STR"
+    ls -l leaderboard.csv
+    cp amgilp/leaderboard.csv ./leaderboardfull.csv
+    ls -l leaderboard.csv
+    read -t 5 -p "I am going to wait for 5 seconds before git push ..."        
+    STR=$'\nPushing to git'
+    echo "$STR"
+    git add updategames
+    git add puzzle_games.txt
+    git add setup
+    git add leaderboardfull.csv
+    git commit -m "Update puzzle games"
+    git push origin nunjucks
+    now=$(date)
+    if [ $1 = "once" ] ; then
+        echo "done"
+        exit 0
+    fi
+    . updatepage
+    wc -l puzzle_games.txt
+    read -t $WAIT_CYC -p "Cycle $CYC done at $now. I am going to wait for $WAIT_CYC seconds before next push ..."
+    let CYC=$CYC+1
+done

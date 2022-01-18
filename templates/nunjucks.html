@@ -1,0 +1,176 @@
+{% import 'macros.html' as macros %}
+
+{{ macros.html_head("amgilp - Are my games in lichess puzzles ?") }}
+
+<script>
+	
+	const found = {{ foundJsonStr }}
+	
+</script>
+
+<span class="updated">
+	
+	Last updated Jan 18, 2022. Contains 2186365 puzzle games.
+	
+</span>
+
+<hr>
+
+<span class="aremygames">
+	
+	Are my games in lichess puzzles ?
+	
+</span>
+
+<hr>
+
+Username 
+
+<input type="text" id="username" value="{{ username }}"></input>
+
+<button onclick="search();">
+	
+	Search
+	
+</button>
+
+<hr>
+
+{% if username %}
+
+	{% if found %}
+
+		wow , 
+
+		<span class="foundusername">
+			
+			{{ found.username }}
+			
+		</span> 
+
+		has games in puzzles , rank 
+
+		<span class="foundrank">
+			
+			{{ found.rank }}
+
+		</span> 
+
+		, puzzles 
+
+		<span class="foundnum">
+			
+			{{ found.num }}
+
+		</span>
+
+		<hr>
+
+		<table cellspacing="5" cellpadding="5">
+
+		{% for id in found.puzzleIds %}
+
+			<tr>
+
+				<td class="showpuzzle">
+					
+					puzzle
+					
+					<a target="_blank" rel="noopener noreferrer" href="https://lichess.org/training/{{ id }}">{{ id }}</a>
+					
+				</td>
+
+				<td class="gamedata" id="gamedata{{ id }}">
+					
+					loading game data ...
+					
+				</td>
+
+				<td class="gamemoves" id="pgn{{ id }}">
+					
+					loading moves ...
+					
+				</td>
+
+			</tr>
+
+		{% endfor %}
+			
+		</table>
+
+		<hr>
+
+	{% else %}
+
+		meh ... , 
+
+		<span class="notfoundusername">
+			
+			{{ username }}
+			
+		</span> 
+
+		has no games in puzzles
+
+		<hr>
+
+		did you mean 
+
+		<a href="/?getpuzzles={{ bestMatch }}">
+			
+			{{ bestMatch }}
+
+		</a> 
+
+		?
+
+		<hr>
+
+	{% endif %}
+
+{% endif %}
+
+<a href="/toplist">
+	
+	View toplist
+	
+</a>
+
+<script>
+	function search(){
+		const username = document.getElementById("username").value
+		document.location.href=`/?getpuzzles=${username}`
+	}
+
+	const usernameInput = document.getElementById("username")
+		usernameInput.addEventListener("keydown", ev => {
+		if(ev.keyCode == 13){
+			search()
+		}
+	})
+
+	setTimeout(_ => {
+		usernameInput.select()
+		usernameInput.focus()
+		
+		if(found){
+			for(let i = 0; i < found.puzzleIds.length; i++){
+				setTimeout(_ => {
+					const id = found.puzzleIds[i]
+					fetch(`/puzzle/?id=${id}`).then(response => response.json().then(blob => {						
+						const data = blob.data
+						const game = data.game						
+						const players = game.players						
+						const playersData = players.map(player => player.name).join(" - ")
+						const gde = document.querySelector("#gamedata" + id)												
+						if(gde) gde.innerHTML = `<a target="_blank" rel="noopener noreferrer" href="https://lichess.org/${game.id}">${playersData} ${game.clock}</a>`
+						const pgne = document.querySelector("#pgn" + id)						
+						if(pgne) pgne.innerHTML = game.pgn
+					}))					
+				}, i * 2000)
+			}
+		}
+	}, 100)
+</script>
+
+{{ macros.html_tail() }}

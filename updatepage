@@ -1,0 +1,15 @@
+node updatetemplate.js
+
+git add updatepage
+git add updategames
+git add leaderboard.py
+git add setup
+git add updatetemplate.js
+git add p.sh
+git add .gitpod.yml
+git add templates/*
+git add public/*
+
+git commit -m "Update page"
+
+git push origin nunjucks

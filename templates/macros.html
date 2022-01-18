@@ -1,0 +1,61 @@
+{% import 'submacros.html' as submacros %}
+
+{% macro html_head(title) -%}
+
+<!DOCTYPE html>
+<html lang="en">
+	
+	<head>
+		
+		<meta charset="utf-8">
+		<link rel="stylesheet" href="/public/styles/app.css">
+		
+		<title>{{ title }}</title>    
+		
+	</head>
+	
+	<body>
+	
+		<div class="header">
+			Based on and using the collected data of wonderful project 
+			<a target="_blank" rel="noopener noreferrer" href="https://github.com/kraktus/AreMyGamesInLichessPuzzles">
+				github.com/kraktus/AreMyGamesInLichessPuzzles
+			</a> 
+			.
+		</div>
+
+		<hr>
+
+		<div class="article">
+
+{%- endmacro -%}
+
+{% macro html_tail() -%}
+			
+		</div>
+
+		<hr>
+
+		<div class="api">
+			Please don't use the UI for bulk queries, consider using the API instead, see
+			<a target="_blank" rel="noopener noreferrer" href="https://github.com/hyperchessbot/amgilp#API">
+				API Documentation
+			</a>
+			.
+		</div>
+
+		<hr>
+
+		<div class="footer">
+			
+			{{ submacros.bottom_link("Discussion / Feedback", "https://discord.gg/8m3Muay", "Hyperbot Discord") }}
+			
+			{{ submacros.bottom_link("Source", "https://github.com/hyperchessbot/amgilp", "github.com/hyperchessbot/amgilp") }}
+
+		</div>
+
+	</body>
+
+</html>
+	
+{%- endmacro -%}

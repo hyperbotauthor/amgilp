@@ -1,0 +1,112 @@
+{% import 'macros.html' as macros %}
+
+{{ macros.html_head(title) }}
+
+<script>
+	document.body.style.opacity = "0.0"
+</script>
+
+{{ title }} | 
+
+{% if prevPage %}
+
+	<a href="/toplist?page={{ prevPage }}">Previous page</a> | 
+
+{% endif %}
+
+<a href="/toplist?page={{ nextPage }}">Next page</a> | 
+
+<a href="/">Home</a>
+
+<hr>
+
+<table cellpadding="3" cellspacing="3">
+	<tr class="puzzle" class="puzzlehead">
+		<td class="index">
+			Index
+		</td>
+		<td class="rank">
+			Rank
+		</td>
+		<td class="username">
+			Username
+		</td>
+		<td class="num">
+			No
+		</td>
+		<td class="puzzles">
+			Puzzles
+		</td>
+	</tr>
+	
+{% for puzzle in puzzles %}
+
+	<tr class="puzzle" id="">
+		
+		<td class="index">
+			
+			{{ puzzle.fullIndex1 }}.
+			
+		</td>
+		
+		<td class="rank">
+			
+			{{ puzzle.rank }}.
+			
+		</td>
+		
+		<td class="username">
+			
+			<a target="_blank" rel="noopener noreferrer" href="https://lichess.org/@/{{ puzzle.username }}">
+				
+				{{ puzzle.username }}
+				
+			</a>
+			
+		</td>
+		
+		<td class="num">
+			
+			{{ puzzle.num }}
+			
+		</td>
+		
+		<td>
+			
+			<div class="puzzlesdiv">
+				
+				{% for id in puzzle.ids %}
+				
+					<a target="_blank" rel="noopener noreferrer" href="https://lichess.org/training/{{ id }}">
+						
+						{{ id }}
+						
+					</a>
+				
+				{% endfor %}
+
+				<a target="_blank" rel="noopener noreferrer" href="/?getpuzzles={{ puzzle.username }}">
+					
+					<span class="andmore">
+						
+						{{ puzzle.andMore }}
+						
+					</span>
+					
+				</a>
+				
+			</div>
+			
+		</td>
+		
+	</tr>
+
+{% endfor %}
+	
+</table>
+
+<script>
+	document.body.style.opacity = "1"
+</script>
+
+{{ macros.html_tail() }}
