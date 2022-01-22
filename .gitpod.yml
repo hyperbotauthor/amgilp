@@ -4,9 +4,9 @@
 
 tasks:
   - init: npm install
-    command: npm run start
-  - command: . setup
-  - command: . updategames
+#    command: npm run start
+#  - command: . setup
+#  - command: . updategames
 vscode:
   extensions:
     - dbaeumer.vscode-eslint
